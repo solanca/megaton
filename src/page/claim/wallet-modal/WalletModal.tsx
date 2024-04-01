@@ -1,5 +1,6 @@
+import { Button } from '@mui/material'
 import { TonConnectButton } from '@tonconnect/ui-react'
-import { createWeb3Modal, defaultConfig, useWeb3ModalAccount } from '@web3modal/ethers/react'
+import { createWeb3Modal, defaultConfig, useWeb3Modal, useWeb3ModalAccount } from '@web3modal/ethers/react'
 
 
 type Props = {}
@@ -47,14 +48,14 @@ createWeb3Modal({
   projectId,
   enableAnalytics: true // Optional - defaults to your Cloud configuration
 })
-// const { open } = useWeb3Modal()
+const { open } = useWeb3Modal()
 const { address } = useWeb3ModalAccount();
 console.log('address=',address);
   return (
     <>
-    {/* <Button onClick={() => open()}>connect</Button> */}
-    <w3m-button/>
-    <TonConnectButton />
+    <Button variant='contained' onClick={() => open()}>Trust Wallet</Button>
+    {/* <w3m-button/> */}
+    <TonConnectButton/>
     </>
   )
 }
