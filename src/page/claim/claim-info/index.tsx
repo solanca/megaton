@@ -3,7 +3,7 @@ import PoolSelect from "./pool-select";
 import { shortenTONAddress } from "../../../utils/utils";
 
 type Props = {
-  wallet_address:string
+  wallet_address:string|undefined
 };
 const Root = styled(Paper)(({ }) => ({
 //   backgroundColor: theme.palette.grey,

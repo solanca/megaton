@@ -1,6 +1,8 @@
 import { Box, Grid, Typography, styled, useTheme } from "@mui/material";
 import ClaimInfo from "./claim-info";
-import { TonConnectButton, useTonAddress } from "@tonconnect/ui-react";
+import {  useTonAddress } from "@tonconnect/ui-react";
+import WalletModal from "./wallet-modal/WalletModal";
+import { useWeb3ModalAccount } from "@web3modal/ethers/react";
 
 
 const Root = styled(Box)(() => ({
@@ -10,6 +12,8 @@ const Root = styled(Box)(() => ({
 }));
 const ClaimPage = () => {
   const userFriendlyAddress = useTonAddress();
+  const { address ,chainId} = useWeb3ModalAccount();
+console.log('address==',address,chainId);
     const theme = useTheme()
   return (
     <Root>
@@ -34,8 +38,8 @@ const ClaimPage = () => {
           look like readable English.
         </Typography>
         {
-            false?<ClaimInfo wallet_address={userFriendlyAddress}/>:
-            <TonConnectButton />
+           ( userFriendlyAddress.length > 0 || address && address?.length>0) ?<ClaimInfo wallet_address={userFriendlyAddress ||address}/>:
+            <WalletModal/>
         // <Button variant="contained" >
         //   Connect wallet
         // </Button>
